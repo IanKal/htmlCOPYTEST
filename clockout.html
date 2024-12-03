@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Out</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>SOBOTZ</h1>
+        <h2>Clock Out</h2>
+        <div id="qr-reader" style="width:500px;"></div>
+
+        <!-- Load QR code scanning library -->
+        <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+        <script>
+            const qrReader = new Html5Qrcode("qr-reader");
+            qrReader.start(
+                { facingMode: "environment" },
+                { fps: 10, qrbox: 250 },
+                (decodedText, decodedResult) => {
+                    console.log(decodedText);
+
+                    fetch('clockout.php', {
+                        method: 'POST',
+                        body: JSON.stringify({ time: new Date(), qrCode: decodedText }),
+                        headers: { 'Content-Type': 'application/json' }
+                    }).then(response => {
+                        window.location.href = 'thankyou.html'; // Redirect to thank you page
+                    });
+                }
+            );
+        </script>
+    </div>
+</body>
+</html>

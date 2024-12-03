@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Admin Login</h1>
+
+        <form id="admin-login-form">
+            <input type="password" id="admin-password" placeholder="Enter Admin Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        // Example admin password check (replace with actual authentication)
+        document.getElementById('admin-login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const adminPassword = document.getElementById('admin-password').value;
+            if(adminPassword === 'admin123') { // Replace with actual secure method
+                window.location.href = 'admin.html'; // Redirect to admin page
+            } else {
+                alert('Incorrect password!');
+            }
+        });
+    </script>
+</body>
+</html>
